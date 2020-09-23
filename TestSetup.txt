@@ -1,0 +1,18 @@
+To test ASPSocket please read the following instructions:
+
+	1-------> Place ASP page on one of PWS or IIS virtual directories
+
+	2-------> Open and run TestServer.vbp (Standard EXE application)
+
+	3-------> Open and run Sockets.vbp (DLL application)
+
+	4-------> Open ASP on browser
+
+^--------------------------------------------------------------------------^
+Happy programming
+
+Your 'amigo':
+
+Antonio Ramirez Cobos
+TonyDSpaniard@hotmail.com
+^--------------------------------------------------------------------------^
