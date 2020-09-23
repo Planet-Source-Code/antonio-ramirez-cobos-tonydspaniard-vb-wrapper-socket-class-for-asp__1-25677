@@ -1,0 +1,177 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<title>ASPSocket Class&nbsp; Date</title>
+</head>
+
+<body>
+
+<table border="0" width="100%" bgcolor="#0099FF">
+  <tr>
+    <td width="100%" bgcolor="#FFFFCC"><font size="5" face="Verdana,Arial" color="#0000FF">ASP Socket
+      Class&nbsp;<br>
+      </font><font face="Arial" size="1"><b> Date: July-28-2001</b><br>
+      <a href="mailto:TonyDSpaniard@hotmail.com">by Antonio Ramirez Cobos</a></font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF"><font face="Arial" size="1"><br>
+      This class allows the implementation of a client socket              to VB and ASP applications. It was designed              with ASP programmers in mind, as other type              of applications are better to be programmed by              using other technologies such as Windows API              for Sockets in order to improve VB to the
+      limit [well, I suppose this type too but, hey, I just started getting in
+      touch with socket technology within ASP -give me some time :-)]</font>
+      <p><font face="Arial" size="1">Nevertheless, I have included some event functionality              for those wishing to test the object within VB.              In addition, 'cause I consider myself
+      to be in a continuous learning              path with no end on programming, please, if you              can improve this object [without using Sockets API]              contact me
+      at <a href="mailto:TonyDSpaniard@hotmail.com">TONYDSPANIARD@HOTMAIL.COM<br>
+      <br>
+      </a>              I would be pleased to hear from your opinions,              suggestions, and/or recommendations. Also, if you              know something I don't know and wish to share it              with me, here you'll have your techy pal from Spain              that will do exactly the same towards you.</font></p>
+      <p><font face="Arial" size="1">Let's build a community of programmers helping              programmers without the lucrative desire of fame              on the back, let's just do it for
+      <b> *KNOWLEDGE*</b>              because that is real power.<br>
+      <br>
+      </font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFCC">
+      <h2><font face="Arial" size="1">ASPSocket Properties</font></h2>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+      <ul>
+        <li><font face="Arial" size="1"><a href="#RemoteHost">RemoteHost</a></font></li>
+        <li><font face="Arial" size="1"><a href="#RemoteHostIP">RemoteHostIP</a></font></li>
+        <li><font face="Arial" size="1"><a href="#RemotePort">RemotePort</a></font></li>
+        <li><font face="Arial" size="1"><a href="#LocalPort">LocalPort</a></font></li>
+        <li><font face="Arial" size="1"><a href="#LocalHostName">LocalHostName</a></font></li>
+        <li><font face="Arial" size="1"><a href="#LocalIP">LocalIP</a></font></li>
+        <li><font face="Arial" size="1"><a href="#ServerReply">ServerReply</a></font></li>
+        <li><font face="Arial" size="1"><a href="#Connected">Connected</a></font></li>
+        <li><font face="Arial" size="1"><a href="#BytesReceived">BytesReceived</a></font></li>
+        <li><font face="Arial" size="1"><a href="#SocketHandle">SocketHandle</a></font></li>
+      </ul>
+      <p><font face="Arial" size="1"><b><a name="RemoteHost">RemoteHost</a></b>:
+      Returns or sets the remote machine to which ASPSocket sends or receives
+      data. You can either provide a host name, for example, &quot;FTP://ftp.microsoft.com,&quot;
+      or an IP address string in dotted format, such as &quot;100.0.1.1&quot;
+      [MSDN]</font></p>
+      <p><font face="Arial" size="1"><b><a name="RemoteHostIP">RemoteHostIP</a></b>:
+      Returns the IP address as a string of the remote machine.</font></p>
+      <p><font face="Arial" size="1"><b><a name="RemotePort">RemotePort</a></b>:
+      Returns or sets the remote machine's port number to connect to.</font></p>
+      <p><font face="Arial" size="1"><b><a name="LocalPort">LocalPort</a></b>:
+      Returns or sets the local port to use</font></p>
+      <p><font face="Arial" size="1"><b><a name="LocalHostName">LocalHostName</a></b>:
+      Returns the local machine name. Read-only.</font></p>
+      <p><font face="Arial" size="1"><b><a name="LocalIP">LocalIP</a></b>:
+      Returns the IP address of the local machine in the IP address dotted
+      string format (xxx.xxx.xxx.xxx). Read-only.</font></p>
+      <p><font face="Arial" size="1"><b><a name="ServerReply">ServerReply</a></b>:
+      Indicates whether the remote machine has sent data back to us or not. This
+      property maintains the state of True until all the bytes received [and
+      stored] have been read [the following example has been extracted from
+      default.asp].&nbsp;</font></p>
+      <blockquote>
+        <p><font face="Arial" size="1">do while  ASPSocket.ServerReply&nbsp;<br>
+        <font color="#0099FF">&nbsp;' Get everything in a shot<br>
+        </font>Response.Write ASPSocket.GetData()<br>
+			ASPSocket.Do_Events&nbsp;<br>
+		loop</font></p>
+      </blockquote>
+      <p><font face="Arial" size="1"><b><a name="Connected">Connected</a></b>:
+      Indicates whether the intent to connect to remote machine has been
+      successful or not.&nbsp;</font></p>
+      <p><font face="Arial" size="1"><b><a name="BytesReceived">BytesReceived</a></b>:
+      Indicates the amount of bytes of data received from the remote machine.
+      The buffer can be read anytime before destruction of the class. The value
+      of this property reduces as the data is been read, therefore the following
+      example is a good way of reading the data received in chunks. Read-only.</font></p>
+      <p><font face="Arial" size="1">do while ASPSocket.BytesReceived &gt;
+      0&nbsp;<br>
+      <font color="#0099FF">&nbsp;			' Get data four bytes at-a-time<br>
+      </font>			Response.Write ASPSocket.GetData(4)<br>
+			ASPSocket.Do_Events&nbsp;<br>
+		loop</font></p>
+      <p><font face="Arial" size="1"><b><a name="SocketHandle">SocketHandle</a></b>:
+      Returns an API&nbsp; handle to the socket. It is included for completeness
+      but it is not very useful from an ASP application.<br>
+      <br>
+      </font></td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFCC">
+      <h2><font face="Arial" size="1">ASPSocket Events&nbsp; [not used in ASP
+      but included for completeness]</font></h2>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+      <ul>
+        <li><font face="Arial" size="1">DataArrival:&nbsp; Occurs when remote
+          machine sends data back</font></li>
+        <li><font face="Arial" size="1">Disconnected: Occurs when remote machine
+          has closed the connection</font></li>
+        <li><font face="Arial" size="1">Connected: Occurs when our socket gets
+          connection has been established</font></li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFCC">
+      <h2><font face="Arial" size="1">ASPSocket Methods</font></h2>
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" bgcolor="#FFFFFF">
+      <ul>
+        <li><font face="Arial" size="1"><a href="#Connect">Connect</a></font></li>
+        <li><font face="Arial" size="1"><a href="#Disconnect">Disconnect</a></font></li>
+        <li><font face="Arial" size="1"><a href="#Send">Send</a></font></li>
+        <li><font face="Arial" size="1"><a href="#GetData">GetData</a></font></li>
+        <li><font face="Arial" size="1"><a href="#Do_Events">Do_Events</a></font></li>
+      </ul>
+      <p><font face="Arial" size="1"><b><a name="Connect">Connect</a>()</b>:
+      Tryes to connect to specified remote host and remote port during a
+      specified interval of Time [60 sec default].</font></p>
+      <p><font face="Arial" size="1">Parameters:</font></p>
+      <ol>
+        <li><font face="Arial" size="1"><u>RHost</u>= Remote Host name or IP
+          [string data type] of the remote machine to connect to. Optional, if
+          not included you *<b>MUST</b>* set the <a href="#RemoteHost">RemoteHost</a>
+          property.</font></li>
+        <li><font face="Arial" size="1"><u>RPort</u>= Remote Port [long data
+          type] of the remote machine to connect to. Optional, if not included
+          will be set to port 80 by default.</font></li>
+        <li><font face="Arial" size="1"><u>TimeOutInSec</u>= Maximum interval of
+          seconds to wait for a successful connection.</font></li>
+      </ol>
+      <p><font face="Arial" size="1"><b><a name="Disconnect">Disconnect</a>()</b>: Closes connection to remote host.</font></p>
+      <p><font face="Arial" size="1"><b><a name="Send">Send</a>(data)</b>: Sends data string to remote host<br>
+      <br>
+      Parameters:</font></p>
+      <ol>
+        <li><font face="Arial" size="1"><u>Text</u>= Data to send to the server.
+          It is important to convert this parameter to a string [using CStr()
+          function] from the ASP application to the class. I could use a variant
+          data type but in this way the class avoids data type checking and can
+          directly transmit the data across the network.</font></li>
+      </ol>
+      <p><font face="Arial" size="1"><b><a name="GetData">GetData</a>()</b>: Extracts and returns specified number of bytes as a string          data type from the buffer if any data was sent from remote host<br>
+      <br>
+      Parameters:</font></p>
+      <ol>
+        <li><font face="Arial" size="1"><u>NumberOfBytes</u>= Number of bytes to extract
+          from stored buffer.</font></li>
+      </ol>
+      <p><font face="Arial" size="1"><br>
+      <b><a name="Do_Events">Do_Events</a>()</b>: Wrapper to the VB method
+      DoEvents, so script programmers can make use of this beautiful VB method.</font></p>
+      <hr>
+      <p align="right"><font face="Arial" size="1"><b>ASPSocket</b> by <a href="mailto:TonyDSpaniard@hotmail.com">Antonio
+      Ramirez Cobos</a><br>
+      July-28-2001</font></td>
+  </tr>
+</table>
+
+</body>
+
+</html>
